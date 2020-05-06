@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'questions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -73,12 +74,39 @@ WSGI_APPLICATION = 'polls.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+'''
+
+DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'ENFORCE_SCHEMA': True,
+            'LOGGING': {
+                'version': 1,
+                'loggers': {
+                    'djongo': {
+                        'level': 'DEBUG',
+                        'propogate': False,
+                    }
+                },
+             },
+            'NAME': 'mydb',
+            'CLIENT': {
+                'host': 'localhost',
+                'port': 27017,
+                #'username': 'db-username',
+                #'password': 'password',
+                #'authSource': 'mydb',
+                #'authMechanism': 'SCRAM-SHA-1'
+            }
+        }
+    }
 
 
 # Password validation
