@@ -1,0 +1,14 @@
+{% extends "questions/index.html" %}
+    {% block content %}
+        {%csrf_token%}
+        user ID : {{ id }} <br>
+        User name : {{ name }}
+        <br>
+            {% for question in questions%}<br>
+                    <form action= {{ url "save_response" }} method="POST">
+                    Question:{{ question.question }}<br>
+                    {% for option in question.options_set.all %}<input type="radio", name = "options", id = {{ option.id }} >{{ option.statement }}</input>><br>
+                    {% endfor %}
+                    </form>
+            {% endfor %}
+    {% endblock content %}

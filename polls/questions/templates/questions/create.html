@@ -1,0 +1,9 @@
+{% extends "questions/index.html" %}
+
+    {% block content %}
+            <form method="POST">
+                {%csrf_token%}
+                {{ form }}
+                <br><input type="submit"/>
+            </form>
+    {% endblock%}
